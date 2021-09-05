@@ -16,12 +16,11 @@ export class AppComponent {
       { responseType: 'text'}).subscribe(data => { this.apiKey = data, this.getStock("AAPL");});
   }
 
-  async getStock (stockSymbol: string) {
-    let reqUrl: string = this.apiBaseUrl + '/time_series?symbol=' + stockSymbol + '&interval=1h&apikey=' + this.apiKey;
+  async getStock (stockSymbol: string, interval: string = '1h') {
+    let reqUrl: string = this.apiBaseUrl + '/time_series?symbol=' + stockSymbol + '&interval=' + interval + '&apikey=' + this.apiKey;
     this.http.get(reqUrl,
       { responseType: 'json'}).subscribe(data => console.log(data))
   };
-
 
 }
 
