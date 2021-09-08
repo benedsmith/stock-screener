@@ -8,20 +8,6 @@ import { HttpClient } from "@angular/common/http";
 })
 export class AppComponent {
   title = 'stock-screener';
-  apiBaseUrl = 'https://api.twelvedata.com';
-  apiKey = '';
-
-  constructor(private http: HttpClient) {
-    this.http.get('assets/apikey.txt',
-      { responseType: 'text'}).subscribe(data => { this.apiKey = data, this.getStock("AAPL");});
-  }
-
-  async getStock (stockSymbol: string, interval: string = '1h') {
-    let reqUrl: string = this.apiBaseUrl + '/time_series?symbol=' + stockSymbol + '&interval=' + interval + '&apikey=' + this.apiKey;
-    this.http.get(reqUrl,
-      { responseType: 'json'}).subscribe(data => console.log(data))
-  };
-
 }
 
 

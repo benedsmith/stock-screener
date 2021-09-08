@@ -5,7 +5,9 @@ import { HttpClientModule } from "@angular/common/http";
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChartComponent } from './chart/chart.component';
-import {AgGridAngular, AgGridModule} from "ag-grid-angular";
+
+import { AgGridModule } from "@ag-grid-community/angular";
+
 
 @NgModule({
   declarations: [
@@ -16,7 +18,7 @@ import {AgGridAngular, AgGridModule} from "ag-grid-angular";
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    AgGridModule.withComponents(),
+    AgGridModule.withComponents([])
   ],
   providers: [],
   bootstrap: [AppComponent]
