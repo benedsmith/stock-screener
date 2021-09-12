@@ -79,8 +79,6 @@ export class ChartComponent {
       chartContainer: document.querySelector("#chart-container-"+this.unique_key),
     };
 
-    // @ts-ignore
-    //document.querySelector('#stock-symbol-container-'+this.unique_key).innerHTML = this.stockSymbol;
     params.api.createRangeChart(chartThemeOverrides);
   }
 
