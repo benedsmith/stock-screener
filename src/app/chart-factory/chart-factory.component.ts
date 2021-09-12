@@ -24,11 +24,13 @@ export class ChartFactoryComponent implements OnInit {
 
   constructor(private CFR: ComponentFactoryResolver) { }
 
-  createComponent() {
+  createComponent(formData: HTMLFormElement) {
     let componentFactory = this.CFR.resolveComponentFactory(ChartComponent);
     let chartComponentRef = this.VCR!.createComponent(componentFactory);
 
     let chartComponent = chartComponentRef?.instance;
+    chartComponent!.stockSymbol = formData.symbol.value;
+    console.log(chartComponent?.stockSymbol);
     chartComponent!.unique_key = ++this.chart_unique_key;
     chartComponent!.parentRef = this;
 

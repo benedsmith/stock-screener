@@ -1,6 +1,10 @@
 <p>chart-factory works!</p>
 
-<button type="button" (click)="createComponent()">Create a chart</button>
+<form #stockInput ngForm (ngSubmit)="createComponent(stockInput)">
+  <input type="text" label="Type a stock symbol" value="GOOG" name="symbol">
+  <input type="submit" value="submit">
+</form>
+
 <div>
 	<ng-template #viewContainerRef></ng-template>
 </div>

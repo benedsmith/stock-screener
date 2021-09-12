@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 import { HttpClient } from "@angular/common/http";
 import { Stock, ValuesEntity } from "./StockDataObj";
@@ -41,7 +41,7 @@ export class ChartComponent {
     {field: 'volume'}
   ];
 
-  stockSymbol: string = "AAPL";
+  public stockSymbol: string = "AAPL";
   rowData: ValuesEntity[] = [];
   stockData!: Stock;
 
@@ -80,7 +80,7 @@ export class ChartComponent {
     };
 
     // @ts-ignore
-    document.querySelector('#stock-symbol-container-'+this.unique_key).innerHTML = this.stockSymbol;
+    //document.querySelector('#stock-symbol-container-'+this.unique_key).innerHTML = this.stockSymbol;
     params.api.createRangeChart(chartThemeOverrides);
   }
 

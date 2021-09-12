@@ -1,6 +1,6 @@
 <div>
   <button (click)="destroyChart()">Remove chart {{unique_key}}</button>
-  <h1 style="color: white">Stock price for:</h1>
+  <h1 style="color: white">Stock price for:{{stockSymbol}}</h1>
   <h2 style="color: ghostwhite" id="stock-symbol-container-{{unique_key}}"></h2>
   <div
         id="chart-container-{{unique_key}}"

@@ -8,6 +8,7 @@ import { ChartComponent } from './chart/chart.component';
 
 import { AgGridModule } from "@ag-grid-community/angular";
 import { ChartFactoryComponent } from './chart-factory/chart-factory.component';
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -16,12 +17,13 @@ import { ChartFactoryComponent } from './chart-factory/chart-factory.component';
     ChartComponent,
     ChartFactoryComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    AgGridModule.withComponents([])
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        AgGridModule.withComponents([]),
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
