@@ -1,14 +1,14 @@
 <div>
   <button (click)="destroyChart()">Remove chart {{unique_key}}</button>
   <h1 style="color: white">Stock price for:</h1>
-  <h2 style="color: ghostwhite" id="stock-symbol-container"></h2>
+  <h2 style="color: ghostwhite" id="stock-symbol-container-{{unique_key}}"></h2>
   <div
-        id="chart-container"
+        id="chart-container-{{unique_key}}"
         style="flex: 1 1 auto; overflow: hidden; height: 30%;"
       ></div>
   <ag-grid-angular
       style="width: 100%; height: 100%;"
-      id="chart"
+      id="chart-{{unique_key}}"
       class="ag-theme-balham-dark"
       [columnDefs]="columnDefs"
       [enableRangeSelection]="true"
