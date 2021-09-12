@@ -7,12 +7,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChartComponent } from './chart/chart.component';
 
 import { AgGridModule } from "@ag-grid-community/angular";
+import { ChartFactoryComponent } from './chart-factory/chart-factory.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ChartComponent
+    ChartComponent,
+    ChartFactoryComponent
   ],
   imports: [
     BrowserModule,

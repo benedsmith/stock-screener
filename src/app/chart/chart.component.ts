@@ -1,12 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 
-import {HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Stock, ValuesEntity } from "./StockDataObj";
 
 import { RangeSelectionModule } from '@ag-grid-enterprise/range-selection';
 import { GridChartsModule } from "@ag-grid-enterprise/all-modules";
 import { ClientSideRowModelModule } from "@ag-grid-enterprise/all-modules";
 import { MenuModule } from "@ag-grid-enterprise/all-modules";
+import {ChartFactoryComponent} from "../chart-factory/chart-factory.component";
 
 @Component({
   selector: 'chart',
@@ -14,7 +15,11 @@ import { MenuModule } from "@ag-grid-enterprise/all-modules";
   styleUrls: [ './chart.component.css' ],
 })
 
-export class ChartComponent implements OnInit {
+export class ChartComponent {
+
+  public unique_key!: number;
+  public parentRef!: ChartFactoryComponent;
+
   public modules: any[] = [
     RangeSelectionModule,
     GridChartsModule,
@@ -24,6 +29,8 @@ export class ChartComponent implements OnInit {
 
   private gridApi: any;
   private gridColumnApi: any;
+  chartThemeOverrides: any;
+  popupParent: any;
 
   columnDefs = [
     {field: 'close'},
@@ -34,6 +41,7 @@ export class ChartComponent implements OnInit {
     {field: 'volume'}
   ];
 
+  stockSymbol: string = "AAPL";
   rowData: ValuesEntity[] = [];
   stockData!: Stock;
 
@@ -46,11 +54,13 @@ export class ChartComponent implements OnInit {
       {responseType: 'text'}).subscribe(data => {
       this.apiKey = data;
       // Hardcoded for now
-      this.getStock("AAPL").then(data => this.rowData = data)
+      this.getStock(this.stockSymbol).then(data => this.rowData = data)
     });
   }
 
-  ngOnInit(): void {
+  destroyChart() {
+    console.log("destroying: " + this.unique_key);
+    this.parentRef.remove(this.unique_key);
   }
 
   onGridReady(params: any) {
@@ -58,6 +68,20 @@ export class ChartComponent implements OnInit {
     this.gridColumnApi = params.columnApi;
     this.gridApi.suppressNoRowsOverlay = true;
     params.api.setRowData(this.rowData);
+
+    const chartThemeOverrides = {
+      cellRange: {
+        rowStartIndex: 0,
+        rowEndIndex: 99,
+        columns: ['datetime', 'close'],
+      },
+      chartType: 'line',
+      chartContainer: document.querySelector("#chart-container"),
+    };
+
+    // @ts-ignore
+    document.querySelector('#stock-symbol-container').innerHTML = this.stockSymbol;
+    params.api.createRangeChart(chartThemeOverrides);
   }
 
 
